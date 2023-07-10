@@ -5,8 +5,15 @@ class ListNode:
 class Solution:
  
     def reverseBetween(self, head,left: int, right: int) :
-        if left == right:
-            return head
+
+        def print_list(k):
+            current = k
+            while current is not None:
+                print(current.val, end=" -> ")
+                current = current.next
+            print("None")
+            if left == right:
+                return head
 
 
         # Create a dummy node and connect it to the head
@@ -15,16 +22,19 @@ class Solution:
 
         # Find the node at position left - 1
         prev = dummy
-        for _ in range(left - 1):
-            prev = prev.next
+        for _ in range(left-1):
+            prev=prev.next
+        
+        curr=prev.next
 
-        # Start reversing the nodes between left and right
-        curr = prev.next
-        for _ in range(right - left):
-            next_node = curr.next
-            curr.next = next_node.next
-            next_node.next = prev.next
-            prev.next = next_node
+        for _ in range(right-left):
+            next_node=curr.next
+            curr.next=next_node.next
+            next_node.next=prev.next
+            prev.next=next_node
+            
+            
+      
 
         return dummy.next
 
